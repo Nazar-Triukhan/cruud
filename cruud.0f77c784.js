@@ -714,7 +714,160 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _getIce = require("./api/getIce");
+var _getIceDefault = parcelHelpers.interopDefault(_getIce);
+var _postIce = require("./api/postIce");
+var _postIceDefault = parcelHelpers.interopDefault(_postIce);
+var _deletIce = require("./api/deletIce");
+var _deletIceDefault = parcelHelpers.interopDefault(_deletIce);
+var _updateIce = require("./api/updateIce");
+var _updateIceDefault = parcelHelpers.interopDefault(_updateIce);
+const listRef = document.querySelector('.list');
+const btnOpenRef = document.querySelector('.open-modal');
+const backdropRef = document.querySelector('.backdrop');
+const formRef = document.querySelector('.form');
+let curentId = null;
+function createItem(arr) {
+    const el = arr.map(({ image, description, price, type, flavour, id })=>{
+        return `<li id="${id}"> 
+    <img src="${image}" alt="${description}">
+    <p>${description}</p>
+    <p>${price}</p>
+    <p>${type}</p>
+    <p>${flavour}</p>
+    <button type="button" class="btn_remove" data-action="remove">delete</button>
+    <button type="button" class="btn_edit" data-action="edit">edit</button>
+</li>`;
+    }).join('');
+    listRef.innerHTML = el;
+}
+(0, _getIceDefault.default)().then((res)=>createItem(res));
+btnOpenRef.addEventListener('click', openModal);
+function openModal() {
+    backdropRef.style.opacity = '1';
+    backdropRef.style.pointerEvents = 'auto';
+}
+function closeModal() {
+    backdropRef.style.opacity = '0';
+    backdropRef.style.pointerEvents = 'none';
+}
+formRef.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    console.log(e.currentTarget.elements[0].value);
+    const data = {
+        image: e.currentTarget.elements[0].value,
+        flavour: e.currentTarget.elements[1].value,
+        type: e.currentTarget.elements[2].value,
+        price: e.currentTarget.elements[3].value,
+        description: e.currentTarget.elements[4].value
+    };
+    if (curentId === null) (0, _postIceDefault.default)(data).then((0, _getIceDefault.default)).then((res)=>createItem(res));
+    (0, _updateIceDefault.default)(curentId, data).then((0, _getIceDefault.default)).then((res)=>createItem(res));
+    formRef.reset();
+    closeModal();
+});
+listRef.addEventListener('click', (e)=>{
+    const action = e.target.dataset.action;
+    const li = e.target.closest('li');
+    const id = li.id;
+    if (!action) return;
+    if (action === 'remove') {
+        (0, _deletIceDefault.default)(id).then((0, _getIceDefault.default)).then((res)=>createItem(res));
+        return;
+    }
+    if (action === 'edit') {
+        console.log(action);
+        openModal();
+        curentId = id;
+        // console.log(li.querySelector('img').src)
+        // console.log(li.querySelectorAll('p')[0].textContent)
+        formRef.elements[0].value = li.querySelector('img').src;
+        formRef.elements[1].value = li.querySelectorAll('p')[0].textContent;
+        formRef.elements[2].value = li.querySelectorAll('p')[1].textContent;
+        formRef.elements[3].value = li.querySelectorAll('p')[2].textContent;
+        formRef.elements[4].value = li.querySelectorAll('p')[3].textContent;
+    }
+});
 
-},{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire1d0d", {})
+},{"./api/getIce":"8HIuF","./api/postIce":"kqE50","./api/deletIce":"4dM5g","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","./api/updateIce":"2y7xl"}],"8HIuF":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>getIce);
+function getIce() {
+    return fetch(`http://localhost:3000/icecream`).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"kqE50":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>postIce);
+function postIce(data) {
+    const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch(`http://localhost:3000/icecream`, options).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4dM5g":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>deleteIce);
+function deleteIce(id) {
+    return fetch(`http://localhost:3000/icecream/${id}`, {
+        method: 'DELETE'
+    }).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"2y7xl":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>updateIce);
+function updateIce(id, postToUpdate) {
+    const options = {
+        method: "PATCH",
+        body: JSON.stringify(postToUpdate),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch(`http://localhost:3000/icecream/${id}`, options).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire1d0d", {})
 
 //# sourceMappingURL=cruud.0f77c784.js.map
