@@ -1,0 +1,32 @@
+{
+  "name": "cruud",
+  "version": "1.0.0",
+  "description": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "dev": "npx parcel src/index.html",
+    "build": "parcel build src/index.html --public-url /cruud/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "server": "npx json-server icreem.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nazar-Triukhan/cruud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nazar-Triukhan/cruud/issues"
+  },
+  "homepage": "https://github.com/Nazar-Triukhan/cruud#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0",
+    "json-server": "^1.0.0-beta.15",
+    "modern-normalize": "^3.0.1"
+  }
+}

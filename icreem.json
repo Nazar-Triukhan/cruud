@@ -1,0 +1,81 @@
+{
+  "icecream": [
+    {
+      "flavour": "Strawberry",
+      "type": "Fruit",
+      "price": "0.8",
+      "description": "Освіжаюче полуничне морозиво",
+      "image": "https://www.elmundoeats.com/wp-content/uploads/2024/07/Strawberry-ice-cream-in-a-cone.jpg",
+      "id": "3"
+    },
+    {
+      "id": "5",
+      "flavour": "Caramel",
+      "type": "Classic",
+      "callory": "125",
+      "price": 55,
+      "description": "Морозиво з солоною карамеллю",
+      "image": "https://www.elmundoeats.com/wp-content/uploads/2024/07/Strawberry-ice-cream-in-a-cone.jpg"
+    },
+    {
+      "flavour": "Mango",
+      "type": "Fruit",
+      "price": "57",
+      "description": "Тропічне мангове морозиво",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_vhfJXSiJGbgBWZu9vmlbqeW1UQwyFX1W3g&s",
+      "id": "6"
+    },
+    {
+      "id": "7",
+      "flavour": "Blueberry",
+      "type": "Fruit",
+      "callory": "98",
+      "price": 50,
+      "description": "Ягідне морозиво з чорниці",
+      "image": "https://flavormosaic.com/wp-content/uploads/2025/06/Blueberry-Cheesecake-Ice-Cream-29-2.jpg"
+    },
+    {
+      "id": "8",
+      "flavour": "Mint",
+      "type": "Refreshing",
+      "callory": "90",
+      "price": 47,
+      "description": "Освіжаюче м’ятне морозиво",
+      "image": "https://icecreamfromscratch.com/wp-content/uploads/2023/02/Andes-Ice-Cream-1.2-735x1103.jpg"
+    },
+    {
+      "flavour": "Cookie",
+      "type": "Dessert",
+      "price": "60",
+      "description": "Морозиво з шматочками печива",
+      "image": "https://www.elmundoeats.com/wp-content/uploads/2024/07/Strawberry-ice-cream-in-a-cone.jpg",
+      "id": "9"
+    },
+    {
+      "id": "10",
+      "flavour": "Lemon",
+      "type": "Sorbet",
+      "callory": "85",
+      "price": 45,
+      "description": "Легкий лимонний сорбет",
+      "image": "https://www.elmundoeats.com/wp-content/uploads/2024/07/Strawberry-ice-cream-in-a-cone.jpg"
+    },
+    {
+      "image": "https://www.elmundoeats.com/wp-content/uploads/2024/07/Strawberry-ice-cream-in-a-cone.jpg",
+      "flavour": "Освіжаюче полуничне морозиво",
+      "type": "0.8",
+      "price": "Fruit",
+      "description": "Strawberry",
+      "id": "gRdYjBp87sY"
+    },
+    {
+      "image": "http://localhost:1234/rg",
+      "flavour": "rtybarf",
+      "type": "Nazar",
+      "price": "2345",
+      "description": "wervsertgergewfrewgrew",
+      "id": "EqY9T-gAEIA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
