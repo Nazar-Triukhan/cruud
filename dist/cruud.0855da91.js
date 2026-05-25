@@ -1,0 +1,10 @@
+function e(){return fetch("http://localhost:3000/icecream").then(e=>e.json())}let t=document.querySelector(".list"),n=document.querySelector(".open-modal"),l=document.querySelector(".backdrop"),o=document.querySelector(".form"),r=null;function c(e){t.innerHTML=e.map(({image:e,description:t,price:n,type:l,flavour:o,id:r})=>`<li id="${r}"> 
+    <img src="${e}" alt="${t}">
+    <p>${t}</p>
+    <p>${n}</p>
+    <p>${l}</p>
+    <p>${o}</p>
+    <button type="button" class="btn_remove" data-action="remove">delete</button>
+    <button type="button" class="btn_edit" data-action="edit">edit</button>
+</li>`).join("")}function a(){l.style.opacity="1",l.style.pointerEvents="auto"}e().then(e=>c(e)),n.addEventListener("click",a),o.addEventListener("submit",t=>{var n;t.preventDefault(),console.log(t.currentTarget.elements[0].value);let a={image:t.currentTarget.elements[0].value,flavour:t.currentTarget.elements[1].value,type:t.currentTarget.elements[2].value,price:t.currentTarget.elements[3].value,description:t.currentTarget.elements[4].value};null===r&&fetch("http://localhost:3000/icecream",{method:"POST",body:JSON.stringify(a),headers:{"Content-Type":"application/json; charset=UTF-8"}}).then(e=>e.json()).then(e).then(e=>c(e)),(n=r,fetch(`http://localhost:3000/icecream/${n}`,{method:"PATCH",body:JSON.stringify(a),headers:{"Content-Type":"application/json; charset=UTF-8"}}).then(e=>e.json())).then(e).then(e=>c(e)),o.reset(),l.style.opacity="0",l.style.pointerEvents="none"}),t.addEventListener("click",t=>{let n=t.target.dataset.action,l=t.target.closest("li"),i=l.id;if(n){if("remove"===n)return void fetch(`http://localhost:3000/icecream/${i}`,{method:"DELETE"}).then(e=>e.json()).then(e).then(e=>c(e));"edit"===n&&(console.log(n),a(),r=i,o.elements[0].value=l.querySelector("img").src,o.elements[1].value=l.querySelectorAll("p")[0].textContent,o.elements[2].value=l.querySelectorAll("p")[1].textContent,o.elements[3].value=l.querySelectorAll("p")[2].textContent,o.elements[4].value=l.querySelectorAll("p")[3].textContent)}});
+//# sourceMappingURL=cruud.0855da91.js.map
